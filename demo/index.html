@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Campflannel Co. ABM account play · Glenbrief (fictional example)</title>
+<meta name="description" content="Fictional example account play showing an ABM intelligence method for HubSpot sales teams.">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FAFAF7; --card:#FFFFFF; --ink:#141414; --body:#2C2C2C; --muted:#6B6B6B; --line:#E6E4DE;
+  --accent:#B45309; --accent-ink:#9A3412; --tint:#F5EDE3;
+  --warn:#9A5B12; --warn-bg:#FBF1E3; --ok:#1F7A4D; --ok-bg:#E5F4EC;
+  --display:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121212; --card:#1A1A1A; --ink:#F3F3F0; --body:#D4D4D0; --muted:#A3A39C; --line:#2E2E2A;
+    --accent:#E8A15A; --accent-ink:#F0B56B; --tint:#2A2118;
+    --warn:#F0B56B; --warn-bg:#3A2A14; --ok:#7AD3A2; --ok-bg:#143326;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121212; --card:#1A1A1A; --ink:#F3F3F0; --body:#D4D4D0; --muted:#A3A39C; --line:#2E2E2A;
+  --accent:#E8A15A; --accent-ink:#F0B56B; --tint:#2A2118;
+  --warn:#F0B56B; --warn-bg:#3A2A14; --ok:#7AD3A2; --ok-bg:#143326;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font-family:var(--text);font-size:16px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,4.5vw,42px);font-weight:650;line-height:1.12;letter-spacing:-.02em}
+h2{font-size:24px;font-weight:650;line-height:1.25;letter-spacing:-.015em}
+h3{font-size:17px;font-weight:650}
+p{margin:0}
+a{color:var(--accent-ink)}
+.eyebrow{font-size:12px;letter-spacing:.08em;font-weight:700;color:var(--accent-ink);text-transform:uppercase}
+.banner{background:var(--tint);border-bottom:1px solid var(--line);font-size:14px;color:var(--ink)}
+.banner .wrap{padding-block:10px;display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.banner strong{font-weight:700}
+header.top{background:var(--card);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-block:32px 26px;display:flex;flex-direction:column;gap:14px}
+.lede{font-size:17.5px;max-width:760px;color:var(--body)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px 20px;margin-top:4px}
+.fact{display:flex;flex-direction:column;gap:2px}
+.fact b{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.fact span{color:var(--ink);font-weight:600}
+nav.sec{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+nav.sec .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:thin}
+nav.sec a{white-space:nowrap;text-decoration:none;color:var(--body);font-size:14px;font-weight:600;padding:6px 10px;border-radius:8px}
+nav.sec a:hover,nav.sec a:focus-visible{background:var(--tint);color:var(--ink);outline:none}
+section{padding-block:36px;border-bottom:1px solid var(--line)}
+section .wrap{display:flex;flex-direction:column;gap:18px}
+.head{display:flex;flex-direction:column;gap:6px;max-width:780px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card p,.card li{font-size:15px}
+ul.plain{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.src{font-size:13px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--tint);color:var(--ink);white-space:nowrap}
+.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td .who{font-weight:700;color:var(--ink)}
+.mob{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.mob .card.primary{border:2px solid var(--accent)}
+.picker{display:flex;flex-wrap:wrap;gap:8px}
+.picker button{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--body);border-radius:999px;padding:8px 14px;cursor:pointer}
+.picker button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.picker button:focus-visible,.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.msgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.msg{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.msg .bar{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.msg pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:var(--text);font-size:14.5px;line-height:1.55;color:var(--body)}
+.copy{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.note{background:var(--tint);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--ink)}
+.steps{counter-reset:s;display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:650;color:var(--accent-ink);font-size:17px}
+footer{padding-block:28px 48px;color:var(--muted);font-size:13.5px}
+.byline{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+
+<div class="banner"><div class="wrap">
+  <strong>Fictional example account, built to show the method.</strong>
+  <span>Glenbrief, Campflannel Co., every person, and every source below are invented. No real company, deal, or result is shown.</span>
+</div></div>
+
+<header class="top"><div class="wrap">
+  <p class="eyebrow">ABM account play · Mid-market commerce · Example</p>
+  <h1>Campflannel Co.</h1>
+  <p class="lede">One target account worked end to end: why now, the buying committee, a Mobilizer pick, warm-intro bridges, per-person messages, a six-week plan, the offer ladder, and how signals map to HubSpot actions. Built to show how I research and run account-based plays for HubSpot sales teams.</p>
+  <p class="byline">Portfolio piece by Dejan Gajsek · Positioning: I build AI systems that make HubSpot sales teams faster.</p>
+  <div class="facts">
+    <div class="fact"><b>Seller</b><span>Glenbrief (fictional)</span></div>
+    <div class="fact"><b>Rep</b><span>Alex Rivera (fictional)</span></div>
+    <div class="fact"><b>Fit</b><span>ICP Tier 1 · Wholesale + DTC</span></div>
+    <div class="fact"><b>HQ</b><span>Portland, OR (fictional)</span></div>
+    <div class="fact"><b>Stack</b><span>Shopify + HubSpot Sales Hub</span></div>
+    <div class="fact"><b>Committee</b><span>10 people mapped</span></div>
+  </div>
+</div></header>
+
+<nav class="sec" aria-label="Sections"><div class="wrap">
+  <a href="#why-now">Why now</a>
+  <a href="#point-of-view">Our angle</a>
+  <a href="#committee">Buying committee</a>
+  <a href="#mobilizer">Mobilizer</a>
+  <a href="#bridges">Warm intros</a>
+  <a href="#messages">Messages</a>
+  <a href="#plan">Six-week plan</a>
+  <a href="#offer">Offer ladder</a>
+  <a href="#objections">Objections</a>
+  <a href="#tracking">Signals in HubSpot</a>
+  <a href="#measures">Measures</a>
+  <a href="#template">Reuse</a>
+</div></nav>
+
+<section id="why-now"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Why now</p>
+    <h2>Five signals that make this account worth a play</h2>
+    <p>Public-web style signals and enrichment notes, written as a worked example. All sources below are labeled fictional.</p>
+  </div>
+  <div class="grid3">
+    <div class="card"><span class="chip">Growth</span><h3>Wholesale is the new growth line</h3><p>Campflannel opened a wholesale program for specialty outdoor shops after years of DTC-only. Reps now carry a named account book, not just a Shopify inbox.</p><p class="src">Fictional: Campflannel wholesale page, "About our shop program"</p></div>
+    <div class="card"><span class="chip">Leadership</span><h3>New VP Sales in the last year</h3><p>Avery Quinn joined as VP Sales to build the wholesale motion. New leaders usually reset tools and process in the first 12 to 18 months.</p><p class="src">Fictional: Campflannel leadership page; fictional LinkedIn history</p></div>
+    <div class="card"><span class="chip">Stack</span><h3>HubSpot sits next to Shopify</h3><p>Wholesale deals and partner contacts live in HubSpot. Shopify stays the storefront. That split is where reps lose time on research and follow-up.</p><p class="src">Fictional: careers listing for "RevOps, HubSpot + Shopify"</p></div>
+    <div class="card"><span class="chip">Hiring</span><h3>Two AE roles open for wholesale</h3><p>Open AE seats usually mean more accounts per person and more pressure on brief prep, CRM hygiene, and handoffs.</p><p class="src">Fictional: Campflannel careers, "Account Executive, Wholesale"</p></div>
+    <div class="card"><span class="chip">Season</span><h3>Fall line sheet cycle is live</h3><p>Wholesale accounts renew assortments before peak outdoor season. Line-sheet work and buyer meetings pile up in a short window.</p><p class="src">Fictional: Campflannel trade newsletter excerpt</p></div>
+  </div>
+</div></section>
+
+<section id="point-of-view"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Our angle</p>
+    <h2>Make wholesale reps faster inside HubSpot, without ripping out Shopify</h2>
+    <p>Campflannel already sells online. The harder work is the human sales motion: briefed calls, clean follow-ups, and a CRM that stays usable as the wholesale book grows. That is where Glenbrief fits.</p>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>1. Account briefs before every call</h3><p>A one-page brief pulled from HubSpot notes, past orders, and public shop signals. For: Avery Quinn, Riley Chen, Lex Park.</p></div>
+    <div class="card"><h3>2. Follow-ups that start from the CRM</h3><p>Draft notes and next steps from deal stage, last meeting, and open tasks, so reps send the same day. For: Avery Quinn, Samira Okonkwo, Theo Vargas.</p></div>
+    <div class="card"><h3>3. Hygiene that does not need a weekly cleanup</h3><p>Auto-suggested properties and staged next actions after calls, so RevOps stops chasing empty fields. For: Riley Chen, Casey Brooks.</p></div>
+  </div>
+  <div class="card">
+    <h3>What this example claims, and what it does not</h3>
+    <ul class="plain">
+      <li>The method is real: signals, committee map, Mobilizer, bridges, opinion-first messages, staggered plan, offer ladder, HubSpot signal table, guardrails.</li>
+      <li>The companies, people, and sources are fictional. Do not treat any number or outcome here as a case study.</li>
+      <li>No invented client win rates, time saved, or revenue figures are shown as facts.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="committee"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Buying committee</p>
+    <h2>Ten people, mapped by role</h2>
+    <p>Roles use a simple model: decision maker, economic buyer, influencer, end user, gatekeeper. Mobilizer is a working guess until someone acts like one.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Person</th><th>Role in the deal</th><th>What they care about</th><th>Reach</th><th>Start</th></tr></thead>
+    <tbody>
+      <tr><td><span class="who">Avery Quinn</span><br>VP Sales</td><td><span class="chip ok">Possible Mobilizer</span><br>Decision maker</td><td>Wholesale quota, rep time, consistent process across a growing book</td><td>Email, LinkedIn, mobile</td><td>Week 1</td></tr>
+      <tr><td><span class="who">Riley Chen</span><br>RevOps Manager</td><td><span class="chip">Alternative Mobilizer</span><br>Influencer, end user</td><td>HubSpot hygiene, reporting that leadership trusts, less manual cleanup</td><td>Email, LinkedIn</td><td>Week 1</td></tr>
+      <tr><td><span class="who">Samira Okonkwo</span><br>Director of Partnerships</td><td><span class="chip">Alternative Mobilizer</span><br>Influencer</td><td>Specialty shop relationships, line-sheet cycles, partner experience</td><td>Email, LinkedIn, mobile</td><td>Week 1</td></tr>
+      <tr><td><span class="who">Theo Vargas</span><br>Head of Ecommerce</td><td>Influencer</td><td>Shopify as source of truth for product, clean handoffs to wholesale</td><td>Email, LinkedIn</td><td>Week 2</td></tr>
+      <tr><td><span class="who">Lex Park</span><br>Sales Enablement Lead</td><td>End user</td><td>Rep onboarding, talk tracks, assets that get used</td><td>Email, LinkedIn</td><td>Week 2</td></tr>
+      <tr><td><span class="who">Jordan Hale</span><br>Chief Revenue Officer</td><td>Decision maker, economic buyer</td><td>Pipeline quality, forecast, cost of adding headcount vs tooling</td><td>Email, LinkedIn</td><td>Week 2</td></tr>
+      <tr><td><span class="who">Casey Brooks</span><br>Chief Financial Officer</td><td>Economic buyer</td><td>Spend discipline, payback window, fewer tools that overlap</td><td>Email, LinkedIn <span class="chip warn">Mobile on DNC</span></td><td>Week 3</td></tr>
+      <tr><td><span class="who">Nina Calder</span><br>Director of Retail Ops</td><td>End user</td><td>Shop program ops, order issues, less back-and-forth with reps</td><td>Email, LinkedIn</td><td>Week 3</td></tr>
+      <tr><td><span class="who">Morgan Ellis</span><br>Chief Executive Officer</td><td>Decision maker, economic buyer</td><td>Brand growth across DTC and wholesale without chaos</td><td>Email, direct line</td><td>Week 4, once someone engages</td></tr>
+      <tr><td><span class="who">Dana Ruiz</span><br>Head of IT and Security</td><td>Gatekeeper</td><td>Data access, SSO, vendor review, HubSpot scopes</td><td>Through Riley Chen <span class="chip warn">Mobile on DNC</span></td><td>When a pilot is discussed</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">Fictional committee. Buying roles are working labels for the play, not tags pulled from a real CRM.</p>
+</div></section>
+
+<section id="mobilizer"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Mobilizer</p>
+    <h2>Who we try to turn into our champion</h2>
+    <p>A Mobilizer pushes the change inside the company. We pick one to lead with and keep two in reserve.</p>
+  </div>
+  <div class="mob">
+    <div class="card primary"><span class="chip ok">Possible Mobilizer</span><h3>Avery Quinn, VP Sales</h3><p>Owns the wholesale motion and feels the pain of unprepared calls and slow follow-up. Has the authority to trial a tool with a few AEs.</p><p class="src">Watch for: asks how other brands did it, brings RevOps in, wants a scoped trial.</p></div>
+    <div class="card"><span class="chip">Alternative 1</span><h3>Riley Chen, RevOps Manager</h3><p>Lives in HubSpot daily. If Avery is quiet, Riley can still open a data and workflow conversation.</p><p class="src">Best if Avery does not respond within three weeks.</p></div>
+    <div class="card"><span class="chip">Alternative 2</span><h3>Samira Okonkwo, Director of Partnerships</h3><p>Feels line-sheet season pressure and partner response times. Risk: may see this as "sales tooling" and bounce it to Avery without reading it.</p><p class="src">Lead with partner experience and faster reply quality, not "AI for sales."</p></div>
+  </div>
+</div></section>
+
+<section id="bridges"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Warm introductions</p>
+    <h2>Find a bridge before the cold email</h2>
+    <p>A second-degree LinkedIn connection who knows someone on the committee can turn a cold email into an introduction. The rep runs this step in Sales Navigator. Enrichment tools and HubSpot do not hold mutual connections.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>How to find a bridge (about 10 minutes)</h3>
+      <ol class="steps">
+        <li><span>Open each committee member in Sales Navigator. Check TeamLink and the rep's own mutual connections.</span></li>
+        <li><span>Rank bridges: a happy customer first, then a partner, then a company leader, then a former colleague, then a shared school or association.</span></li>
+        <li><span>Send the intro request below to the best one. Wait 5 business days before the cold email to that person.</span></li>
+        <li><span>Log it in HubSpot as a note on the contact: who bridged, and the answer.</span></li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Leads to check first (example ranking)</h3>
+      <ul class="plain">
+        <li><b>Current Glenbrief customers in outdoor or DTC.</b> Ask whether they know Avery or Riley.</li>
+        <li><b>Shopify Plus partner contacts.</b> Theo Vargas likely sits in that network. Useful only if the rep already knows someone there.</li>
+        <li><b>Former employers.</b> If Avery came from another brand with a HubSpot shop, check mutuals from that company.</li>
+        <li><b>Alex's own Portland network.</b> Check mutuals with Avery Quinn first.</li>
+      </ul>
+      <p class="src">These bridge leads are part of the fictional example. A real play would name only people and firms the rep is cleared to involve.</p>
+    </div>
+  </div>
+  <div class="msgs">
+    <div class="msg"><div class="bar"><h3>Intro request to the bridge</h3><button class="copy" type="button" data-copy="bridge-ask">Copy</button></div><pre id="bridge-ask">Hi [Bridge name], hope you're doing well.
+
+I noticed you're connected with Avery Quinn at Campflannel. Would you be comfortable introducing us?
+
+I work with HubSpot sales teams at DTC and wholesale brands on cutting the time reps spend on account prep and follow-up. Campflannel is one of the teams I'd most like to learn from. No pressure at all if you don't know Avery well.
+
+If it helps, there's a short note below you can forward as is.
+
+Thanks either way,
+Alex</pre></div>
+    <div class="msg"><div class="bar"><h3>Forwardable note for the bridge</h3><button class="copy" type="button" data-copy="bridge-fwd">Copy</button></div><pre id="bridge-fwd">Avery, I'd like to introduce you to Alex Rivera at Glenbrief. Alex works with HubSpot sales teams at DTC and wholesale brands on account briefs and follow-ups that start from the CRM. I thought you two would have a useful conversation.
+
+Alex, over to you.</pre></div>
+  </div>
+</div></section>
+
+<section id="messages"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Messages</p>
+    <h2>A message for each person</h2>
+    <p>All from Alex. Each asks for an opinion, not a meeting, and ends with an easy way out. Every email ends with the signature below for CASL and CAN-SPAM. No other links or attachments in first emails.</p>
+  </div>
+  <div class="msg"><div class="bar"><h3>Signature on every email (CASL and CAN-SPAM)</h3><button class="copy" type="button" data-copy="sig">Copy</button></div><pre id="sig">Alex Rivera
+Sales, Glenbrief
+Glenbrief Inc., 100 Example Street, Suite 400, Portland, OR 97201, USA · glenbrief.example
+If you'd rather not hear from me, just reply "no thanks" or click here to unsubscribe.</pre><p class="src">Set it as the rep's HubSpot email signature so sequences add it automatically, and link "click here" to HubSpot's unsubscribe link. Opt-outs are handled the same day.</p></div>
+  <div class="picker" role="group" aria-label="Choose a person" id="picker"></div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+</div></section>
+
+<section id="plan"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Six-week plan</p>
+    <h2>Who hears from us, when, and how</h2>
+    <p>Staggered so no two people at Campflannel get the same message on the same day. About 10 to 12 touches across the committee. Pause anyone who replies and handle them by hand.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Week</th><th>Who</th><th>Channel</th><th>What</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>All</td><td>Prep</td><td>Check bridges in Sales Navigator, send intro requests, set HubSpot alerts</td></tr>
+      <tr><td>1</td><td>Quinn, Chen, Okonkwo</td><td>LinkedIn, then email</td><td>Connection requests on day 1, first emails on days 2 and 3. Call Quinn on day 4.</td></tr>
+      <tr><td>2</td><td>Vargas, Park, Hale</td><td>LinkedIn, email, phone</td><td>First emails to Vargas, Park, and Hale. Call Chen. Follow up LinkedIn accepts.</td></tr>
+      <tr><td>3</td><td>Brooks, Calder; follow-ups</td><td>Email, phone</td><td>First emails to Brooks and Calder. Follow-up to Quinn, Chen, and Okonkwo with one useful note, no deck.</td></tr>
+      <tr><td>4</td><td>Ellis; anyone engaged</td><td>Email</td><td>Note to the CEO once someone has replied. Offer the workshop to anyone who replied.</td></tr>
+      <tr><td>5</td><td>Non-responders</td><td>Email</td><td>A last short note with an honest exit.</td></tr>
+      <tr><td>6</td><td>Account review</td><td>Internal</td><td>Keep as a focus account, or move to a lighter sequence and swap in a new target.</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section id="offer"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Offer ladder</p>
+    <h2>Low ask first, scoped pilot last</h2>
+  </div>
+  <div class="card">
+    <ol class="steps">
+      <li><span><b>Opinion ask:</b> "Where do your wholesale reps lose the most time before and after a HubSpot call?"</span></li>
+      <li><span><b>Share-back:</b> a short summary of patterns from similar DTC + wholesale teams, sent only to people who answered.</span></li>
+      <li><span><b>Workshop:</b> 60 minutes with Sales, RevOps, and Partnerships. They leave with three HubSpot workflows ranked for Campflannel.</span></li>
+      <li><span><b>Scoped pilot:</b> one workflow with the success measure agreed before anything is built.</span></li>
+    </ol>
+  </div>
+</div></section>
+
+<section id="objections"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Objections</p>
+    <h2>What we'll hear, and what to say</h2>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>"We already have HubSpot"</h3><p>"Good. We sit on top of it. The point is less time in empty fields and more time on the accounts that matter."</p></div>
+    <div class="card"><h3>"We're already doing AI"</h3><p>"Useful. Where does it show up for wholesale reps today? I'm asking because most teams have AI in the storefront long before the CRM motion is tidy."</p></div>
+    <div class="card"><h3>"Not a priority right now"</h3><p>"Understood. When do you plan the next wholesale cycle? I can check back then, and I can send a one-page summary of what other HubSpot wholesale teams are seeing if that helps."</p></div>
+    <div class="card"><h3>"Just send me something"</h3><p>"Happy to. So it's worth reading: is pre-call prep or same-day follow-up the bigger drag? I'll send the note that fits."</p></div>
+    <div class="card"><h3>"What about our data and security?"</h3><p>"Your HubSpot data stays in HubSpot. We'd walk Dana and Riley through scopes and access before anything starts."</p></div>
+    <div class="card"><h3>"What does it cost?"</h3><p>"It depends on the workflow, so we agree the success measure first. The workshop is where we size it, and it's useful even if we don't go further."</p></div>
+  </div>
+</div></section>
+
+<section id="tracking"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Signals in HubSpot</p>
+    <h2>What we watch, and what each signal triggers</h2>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>Done in HubSpot</h3><ul class="plain"><li>Campflannel set as a Target Account</li><li>Committee contacts owned by Alex, tagged Account-Based Outreach, non-marketing</li><li>Buying roles set on each record</li></ul></div>
+    <div class="card"><h3>To set up</h3><ul class="plain"><li>A workflow that alerts Alex when any Campflannel contact opens or clicks twice in a week</li><li>A Sales Navigator alert on the committee for job changes and posts</li><li>A weekly check of the Campflannel news and careers pages</li></ul></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Signal</th><th>What it means</th><th>What Alex does</th></tr></thead>
+    <tbody>
+      <tr><td>Reply to the opinion ask</td><td>Engaged</td><td>Pause the sequence, send the share-back, offer the workshop</td></tr>
+      <tr><td>Multiple email opens or clicks</td><td>Interest, maybe shared inside</td><td>Call the same day; ask who else should see it</td></tr>
+      <tr><td>New contact from Campflannel created</td><td>Someone came to us</td><td>Check their role and add them to the committee</td></tr>
+      <tr><td>Job change or new hire on the committee</td><td>New person with a mandate</td><td>Congratulate on LinkedIn; reach out in their first 90 days</td></tr>
+      <tr><td>Wholesale or careers news</td><td>A live reason to write</td><td>Reference it in the next touch to Quinn or Okonkwo</td></tr>
+      <tr><td>No engagement after 6 weeks</td><td>Not now</td><td>Move to a lighter sequence, swap in a new focus account</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section id="measures"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Measures</p>
+    <h2>What good looks like for one account</h2>
+    <p>Working targets for the play, not forecasts.</p>
+  </div>
+  <div class="grid3">
+    <div class="card"><span class="chip">30 days</span><p>5 or more of the committee connected on LinkedIn or replied. At least one bridge tested.</p></div>
+    <div class="card"><span class="chip">60 days</span><p>A first conversation with Quinn, Chen, or Okonkwo. A workshop booked.</p></div>
+    <div class="card"><span class="chip">90 days</span><p>The workshop held with at least three leaders. A qualified opportunity with an agreed success measure.</p></div>
+  </div>
+  <div class="card"><h3>Guardrails</h3><ul class="plain">
+    <li>CASL and CAN-SPAM on every email: sender name, mailing address, working unsubscribe. Opt-outs handled the same day.</li>
+    <li>Calls dialed by hand. No calls to mobiles flagged Do Not Call (Brooks, Ruiz).</li>
+    <li>No marketing emails. These are non-marketing contacts, so one-to-one only.</li>
+  </ul></div>
+</div></section>
+
+<section id="template"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Reuse</p>
+    <h2>The next account takes about an hour</h2>
+    <p>Same steps, same order. An AI assistant drafts the research and first messages. The rep edits and sends.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Step</th><th>Who</th><th>Time</th><th>Output</th></tr></thead>
+    <tbody>
+      <tr><td>1. Why now and our angle</td><td>AI draft</td><td>15 min</td><td>Signals with sources, three use cases</td></tr>
+      <tr><td>2. Buying committee</td><td>AI + enrichment tool</td><td>10 min</td><td>8 to 11 people with roles and reach</td></tr>
+      <tr><td>3. HubSpot setup</td><td>Rep or RevOps</td><td>5 min</td><td>Target Account, contacts, buying roles</td></tr>
+      <tr><td>4. Bridges</td><td>Rep in Sales Navigator</td><td>10 min</td><td>Best bridge and the intro request sent</td></tr>
+      <tr><td>5. Messages</td><td>AI drafts, rep edits</td><td>20 min</td><td>One email, LinkedIn note, and call opener per person</td></tr>
+      <tr><td>6. Six-week plan</td><td>Rep</td><td>5 min</td><td>Touches on the calendar</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<footer><div class="wrap">
+  <p>Prepared as a portfolio example by Dejan Gajsek. Glenbrief, Campflannel Co., all people, and all cited sources on this page are fictional. Method only. MIT-licensed demo in the abm-account-intel repo.</p>
+</div></footer>
+
+<script>
+const P = [
+  {k:'quinn', n:'Avery Quinn', t:'VP Sales', m:[
+    ['Email', 'Subject: Where wholesale reps lose time\n\nHi Avery,\n\nBuilding a wholesale book next to a Shopify DTC motion usually means reps spend too long on account prep and same-day follow-up.\n\nI work at Glenbrief. We build AI that sits on HubSpot so sales teams get faster briefs and cleaner next steps without changing their CRM.\n\nOne question rather than a meeting ask: if you could take one recurring headache off your wholesale AEs, which would it be? I\'m comparing notes with a few HubSpot teams and glad to share what I\'m hearing.\n\nAlex'],
+    ['LinkedIn note', 'Avery, I work with HubSpot sales teams at DTC and wholesale brands on cutting prep and follow-up time. Would be glad to connect and compare notes.'],
+    ['Call opener', 'Avery, it\'s Alex Rivera with Glenbrief. I\'ll be quick. I\'m asking VPs of Sales at a few brands one thing: where do wholesale reps lose the most time before and after a HubSpot call? Do you have 30 seconds for your take?']]},
+  {k:'chen', n:'Riley Chen', t:'RevOps', m:[
+    ['Email', 'Subject: HubSpot hygiene at Campflannel\n\nHi Riley,\n\nRevOps teams tell me the same story: leadership wants better forecast views, and the data only stays clean if reps can fill fields without a weekly cleanup project.\n\nWe build AI on top of HubSpot that suggests next steps and property updates after calls, so hygiene is a byproduct of the work, not a separate chore.\n\nWhat\'s the hardest HubSpot field or stage for your wholesale team to keep honest today? Happy to share what peers are doing.\n\nAlex'],
+    ['LinkedIn note', 'Riley, I work with RevOps teams on HubSpot hygiene that sticks for wholesale and DTC sales orgs. Would value connecting.'],
+    ['Call opener', 'Riley, it\'s Alex Rivera with Glenbrief. I\'m calling RevOps leads with one question: what\'s hardest to keep clean in HubSpot as the wholesale book grows?']]},
+  {k:'okonkwo', n:'Samira Okonkwo', t:'Partnerships', m:[
+    ['Email', 'Subject: Line-sheet season and reply speed\n\nHi Samira,\n\nLine-sheet season is when partner emails pile up and slow replies start to cost assortment decisions.\n\nWe help HubSpot teams draft follow-ups from deal stage and last activity so partnership owners answer the same day.\n\nWhere does partner follow-up break down most for your team right now? If it\'s not a fit, no follow-up.\n\nAlex'],
+    ['LinkedIn note', 'Samira, I work with partnership teams at DTC brands on faster, cleaner HubSpot follow-ups during line-sheet season. Glad to connect.'],
+    ['Call opener', 'Samira, it\'s Alex Rivera with Glenbrief. Quick one: where does partner follow-up break down most during line-sheet season?']]},
+  {k:'vargas', n:'Theo Vargas', t:'Ecommerce', m:[
+    ['Email', 'Subject: Shopify truth, HubSpot motion\n\nHi Theo,\n\nShopify should stay the product source of truth. The mess usually shows up when wholesale reps re-key product context into HubSpot notes before every call.\n\nWe build HubSpot-side briefs that pull from CRM history so ecommerce and sales stay aligned without a second system of record.\n\nIs the handoff from product updates to wholesale reps a pain for you today?\n\nAlex'],
+    ['LinkedIn note', 'Theo, I work on keeping Shopify as source of truth while HubSpot sales motions stay fast. Would be glad to connect.'],
+    ['Call opener', 'Theo, it\'s Alex Rivera with Glenbrief. I\'m asking ecommerce leads one thing: where does the Shopify-to-HubSpot handoff waste the most time?']]},
+  {k:'park', n:'Lex Park', t:'Enablement', m:[
+    ['Email', 'Subject: Talk tracks that get used\n\nHi Lex,\n\nEnablement decks only help if reps open them before a call. Most don\'t, because the account context is missing.\n\nWe put a short account brief next to the deal in HubSpot so new AEs start prepared on day one.\n\nWhat do new wholesale reps struggle with most in their first 30 days?\n\nAlex'],
+    ['LinkedIn note', 'Lex, I work with sales enablement on HubSpot account briefs that new AEs actually open. Glad to connect.'],
+    ['Call opener', 'Lex, it\'s Alex Rivera with Glenbrief. One question: what do new wholesale reps struggle with most in their first 30 days?']]},
+  {k:'hale', n:'Jordan Hale', t:'CRO', m:[
+    ['Email', 'Subject: Headcount vs. faster reps\n\nHi Jordan,\n\nWhen wholesale is the growth line, the default answer is more AEs. Sometimes the better move is making the current team faster inside HubSpot before you add seats.\n\nWe build AI systems that cut prep and follow-up time for HubSpot sales teams.\n\nIs rep capacity or forecast quality the tighter constraint for you this year? If neither, no follow-up.\n\nAlex'],
+    ['LinkedIn note', 'Jordan, I work with revenue leaders on making HubSpot sales teams faster before they add headcount. Would be glad to connect.'],
+    ['Call opener', 'Jordan, it\'s Alex Rivera with Glenbrief. Quick one: is rep capacity or forecast quality the tighter constraint right now?']]},
+  {k:'brooks', n:'Casey Brooks', t:'CFO', m:[
+    ['Email', 'Subject: Tooling spend vs. AE seats\n\nHi Casey,\n\nA common tradeoff I hear from finance: another AE seat now, or a smaller tooling spend that makes the current HubSpot team cover more accounts well.\n\nWe keep the pilot scoped to one workflow with a success measure agreed up front, so you can judge payback without a platform migration.\n\nIs a short, measured pilot something you\'d want Sales to bring you, or should I leave this with Avery?\n\nAlex'],
+    ['LinkedIn note', 'Casey, I work with finance and sales leaders on scoped HubSpot pilots with a clear success measure before spend grows. Glad to connect.'],
+    ['Call', 'No call: mobile is on the Do Not Call list. Email and LinkedIn only.']]},
+  {k:'calder', n:'Nina Calder', t:'Retail Ops', m:[
+    ['Email', 'Subject: Less back-and-forth with reps\n\nHi Nina,\n\nRetail ops often becomes the help desk for wholesale reps who lack account context before they call a shop.\n\nWe put that context into HubSpot briefs so fewer "quick checks" land on your team.\n\nWhat request from sales creates the most noise for retail ops today?\n\nAlex'],
+    ['LinkedIn note', 'Nina, I work with retail ops teams on cutting the back-and-forth that HubSpot wholesale reps create. Would be glad to connect.'],
+    ['Call opener', 'Nina, it\'s Alex Rivera with Glenbrief. I\'m asking retail ops leads one thing: what request from sales creates the most noise?']]},
+  {k:'ellis', n:'Morgan Ellis', t:'CEO', m:[
+    ['Email (week 4, once someone engages)', 'Subject: Campflannel and HubSpot sales speed\n\nHi Morgan,\n\nAs Campflannel grows wholesale next to DTC, the brand usually feels the strain first in sales process, not in the storefront.\n\nI\'ve been comparing notes with [Avery Quinn / Riley Chen] on where AI could help HubSpot reps move faster. I wanted you to know, in case it\'s ever useful at your level.\n\nNo meeting ask, and no follow-up unless you\'d like one.\n\nAlex'],
+    ['Call', 'Direct line only. Hold until someone on the committee has engaged.']]},
+  {k:'ruiz', n:'Dana Ruiz', t:'IT / Security', m:[
+    ['Approach', 'No cold outreach. Bring Dana in through Riley Chen once a pilot is on the table, with a short security and HubSpot scopes note ready. Mobile is on the Do Not Call list.']]}
+];
+const picker = document.getElementById('picker'), box = document.getElementById('msgs');
+const SIG = '\n\n--\n' + document.getElementById('sig').textContent;
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function show(k){
+  const p = P.find(x=>x.k===k);
+  picker.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.k===k ? 'true':'false'));
+  box.innerHTML = p.m.map((m,i)=>{
+    const body = m[0].startsWith('Email') && !m[1].startsWith('No ') && !m[1].startsWith('Direct ') ? m[1]+SIG : m[1];
+    return '<div class="msg"><div class="bar"><h3>'+esc(m[0])+'</h3><button class="copy" type="button" data-copy="m'+i+'">Copy</button></div><pre id="m'+i+'">'+esc(body)+'</pre></div>';
+  }).join('');
+}
+P.forEach(p=>{
+  const b=document.createElement('button');
+  b.type='button'; b.dataset.k=p.k; b.textContent=p.n+' · '+p.t;
+  b.addEventListener('click',()=>show(p.k));
+  picker.appendChild(b);
+});
+show('quinn');
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.copy'); if(!b) return;
+  const el = document.getElementById(b.dataset.copy); const t = el.textContent;
+  const done = ()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500);};
+  try{ navigator.clipboard.writeText(t).then(done).catch(()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}); }
+  catch(_){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}
+});
+</script>
+</body>
+</html>

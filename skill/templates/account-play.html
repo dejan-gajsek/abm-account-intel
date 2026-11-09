@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TARGET_ACCOUNT}} ABM account play · {{SELLER_COMPANY}}</title>
+<style>
+:root{
+  --bg:#FAFAF7; --card:#FFFFFF; --ink:#141414; --body:#2C2C2C; --muted:#6B6B6B; --line:#E6E4DE;
+  --accent:#B45309; --accent-ink:#9A3412; --tint:#F5EDE3;
+  --warn:#9A5B12; --warn-bg:#FBF1E3; --ok:#1F7A4D; --ok-bg:#E5F4EC;
+  --display:ui-sans-serif,system-ui,sans-serif; --text:ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#121212; --card:#1A1A1A; --ink:#F3F3F0; --body:#D4D4D0; --muted:#A3A39C; --line:#2E2E2A;
+    --accent:#E8A15A; --accent-ink:#F0B56B; --tint:#2A2118;
+    --warn:#F0B56B; --warn-bg:#3A2A14; --ok:#7AD3A2; --ok-bg:#143326; color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font-family:var(--text);font-size:16px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0}
+h1{font-size:clamp(28px,4.5vw,42px);font-weight:650;letter-spacing:-.02em}
+h2{font-size:24px;font-weight:650}
+h3{font-size:17px;font-weight:650}
+p{margin:0} a{color:var(--accent-ink)}
+.eyebrow{font-size:12px;letter-spacing:.08em;font-weight:700;color:var(--accent-ink);text-transform:uppercase}
+.banner{background:var(--tint);border-bottom:1px solid var(--line);font-size:14px}
+.banner .wrap{padding:10px 16px}
+header.top{background:var(--card);border-bottom:1px solid var(--line)}
+header.top .wrap{padding:32px 16px 26px;display:flex;flex-direction:column;gap:14px}
+.lede{font-size:17.5px;max-width:760px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px 20px}
+.fact{display:flex;flex-direction:column;gap:2px}
+.fact b{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.fact span{color:var(--ink);font-weight:600}
+nav.sec{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+nav.sec .wrap{display:flex;gap:4px;overflow-x:auto;padding:8px 16px}
+nav.sec a{white-space:nowrap;text-decoration:none;color:var(--body);font-size:14px;font-weight:600;padding:6px 10px;border-radius:8px}
+section{padding:36px 0;border-bottom:1px solid var(--line)}
+section .wrap{display:flex;flex-direction:column;gap:18px;padding:0 16px}
+.head{display:flex;flex-direction:column;gap:6px;max-width:780px}
+.grid2,.grid3,.mob,.msgs{display:grid;gap:14px}
+.grid2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid3,.mob{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.msgs{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card,.msg{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.mob .card.primary{border:2px solid var(--accent)}
+.chip{display:inline-flex;font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--tint)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.src{font-size:13px;color:var(--muted)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+.who{font-weight:700;color:var(--ink)}
+ul.plain{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px}
+.steps li::before{content:counter(s);font-weight:650;color:var(--accent-ink)}
+.picker{display:flex;flex-wrap:wrap;gap:8px}
+.picker button{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;cursor:pointer}
+.picker button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.msg .bar{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.msg pre{margin:0;white-space:pre-wrap;font-family:var(--text);font-size:14.5px}
+.copy{font:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:5px 10px;cursor:pointer}
+footer{padding:28px 0 48px;color:var(--muted);font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="banner"><div class="wrap">{{FICTIONAL_BANNER_OR_EMPTY}}</div></div>
+<header class="top"><div class="wrap">
+  <p class="eyebrow">ABM account play · {{SEGMENT}} · {{STATUS_LABEL}}</p>
+  <h1>{{TARGET_ACCOUNT}}</h1>
+  <p class="lede">{{LEDE}}</p>
+  <div class="facts">
+    <div class="fact"><b>Owner</b><span>{{REP_NAME}}</span></div>
+    <div class="fact"><b>Seller</b><span>{{SELLER_COMPANY}}</span></div>
+    <div class="fact"><b>Fit</b><span>{{ICP_TIER}}</span></div>
+    <div class="fact"><b>HQ</b><span>{{HQ}}</span></div>
+    <div class="fact"><b>Stack</b><span>{{STACK_NOTES}}</span></div>
+    <div class="fact"><b>Committee</b><span>{{COMMITTEE_COUNT}} people</span></div>
+  </div>
+</div></header>
+<nav class="sec" aria-label="Sections"><div class="wrap">
+  <a href="#why-now">Why now</a><a href="#point-of-view">Our angle</a><a href="#committee">Buying committee</a><a href="#mobilizer">Mobilizer</a><a href="#bridges">Warm intros</a><a href="#messages">Messages</a><a href="#plan">Six-week plan</a><a href="#offer">Offer ladder</a><a href="#objections">Objections</a><a href="#tracking">Signals</a><a href="#measures">Measures</a><a href="#template">Reuse</a>
+</div></nav>
+
+<section id="why-now"><div class="wrap">
+  <div class="head"><p class="eyebrow">Why now</p><h2>{{WHY_NOW_HEADING}}</h2><p>{{WHY_NOW_INTRO}}</p></div>
+  <div class="grid3">
+    <!-- Repeat .card per signal: chip, h3, p, p.src -->
+    {{WHY_NOW_CARDS}}
+  </div>
+</div></section>
+
+<section id="point-of-view"><div class="wrap">
+  <div class="head"><p class="eyebrow">Our angle</p><h2>{{ANGLE_HEADING}}</h2><p>{{ANGLE_INTRO}}</p></div>
+  <div class="grid3">{{USE_CASE_CARDS}}</div>
+  <div class="card"><h3>Proof we can cite</h3><ul class="plain">{{PROOF_ITEMS}}</ul></div>
+</div></section>
+
+<section id="committee"><div class="wrap">
+  <div class="head"><p class="eyebrow">Buying committee</p><h2>{{COMMITTEE_HEADING}}</h2><p>{{COMMITTEE_INTRO}}</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Person</th><th>Role in the deal</th><th>What they care about</th><th>Reach</th><th>Start</th></tr></thead>
+    <tbody>{{COMMITTEE_ROWS}}</tbody>
+  </table></div>
+</div></section>
+
+<section id="mobilizer"><div class="wrap">
+  <div class="head"><p class="eyebrow">Mobilizer</p><h2>Who we try to turn into our champion</h2><p>A Mobilizer pushes the change inside the company. We pick one to lead with and keep two in reserve.</p></div>
+  <div class="mob">{{MOBILIZER_CARDS}}</div>
+</div></section>
+
+<section id="bridges"><div class="wrap">
+  <div class="head"><p class="eyebrow">Warm introductions</p><h2>Find a bridge before the cold email</h2><p>{{BRIDGES_INTRO}}</p></div>
+  <div class="grid2">
+    <div class="card"><h3>How to find a bridge (about 10 minutes)</h3>
+      <ol class="steps">
+        <li><span>Open each committee member in Sales Navigator. Check TeamLink and the rep's own mutual connections.</span></li>
+        <li><span>Rank bridges: customer, partner, company leader, former colleague, shared school or association.</span></li>
+        <li><span>Send the intro request. Wait 5 business days before the cold email to that person.</span></li>
+        <li><span>Log the bridge and answer as a CRM note.</span></li>
+      </ol>
+    </div>
+    <div class="card"><h3>Leads to check first</h3><ul class="plain">{{BRIDGE_LEADS}}</ul></div>
+  </div>
+  <div class="msgs">
+    <div class="msg"><div class="bar"><h3>Intro request to the bridge</h3><button class="copy" type="button" data-copy="bridge-ask">Copy</button></div><pre id="bridge-ask">{{BRIDGE_ASK}}</pre></div>
+    <div class="msg"><div class="bar"><h3>Forwardable note for the bridge</h3><button class="copy" type="button" data-copy="bridge-fwd">Copy</button></div><pre id="bridge-fwd">{{BRIDGE_FWD}}</pre></div>
+  </div>
+</div></section>
+
+<section id="messages"><div class="wrap">
+  <div class="head"><p class="eyebrow">Messages</p><h2>A message for each person</h2><p>Each asks for an opinion, not a meeting, and ends with an easy out. First emails: no links or attachments beyond the signature.</p></div>
+  <div class="msg"><div class="bar"><h3>Signature on every email (CASL and CAN-SPAM)</h3><button class="copy" type="button" data-copy="sig">Copy</button></div><pre id="sig">{{EMAIL_SIGNATURE}}</pre></div>
+  <div class="picker" role="group" aria-label="Choose a person" id="picker"></div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+</div></section>
+
+<section id="plan"><div class="wrap">
+  <div class="head"><p class="eyebrow">Six-week plan</p><h2>Who hears from us, when, and how</h2><p>{{PLAN_INTRO}}</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Week</th><th>Who</th><th>Channel</th><th>What</th></tr></thead>
+    <tbody>{{PLAN_ROWS}}</tbody>
+  </table></div>
+</div></section>
+
+<section id="offer"><div class="wrap">
+  <div class="head"><p class="eyebrow">Offer ladder</p><h2>Low ask first, scoped pilot last</h2></div>
+  <div class="card"><ol class="steps">
+    <li><span><b>Opinion ask:</b> {{OPINION_ASK}}</span></li>
+    <li><span><b>Share-back:</b> {{SHARE_BACK}}</span></li>
+    <li><span><b>Workshop:</b> {{WORKSHOP}}</span></li>
+    <li><span><b>Scoped pilot:</b> {{PILOT}}</span></li>
+  </ol></div>
+</div></section>
+
+<section id="objections"><div class="wrap">
+  <div class="head"><p class="eyebrow">Objections</p><h2>What we'll hear, and what to say</h2></div>
+  <div class="grid2">{{OBJECTION_CARDS}}</div>
+</div></section>
+
+<section id="tracking"><div class="wrap">
+  <div class="head"><p class="eyebrow">Signals in HubSpot</p><h2>What we watch, and what each signal triggers</h2></div>
+  <div class="grid2">
+    <div class="card"><h3>Done in HubSpot</h3><ul class="plain">{{HS_DONE}}</ul></div>
+    <div class="card"><h3>To set up</h3><ul class="plain">{{HS_TODO}}</ul></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Signal</th><th>What it means</th><th>What the rep does</th></tr></thead>
+    <tbody>{{SIGNAL_ROWS}}</tbody>
+  </table></div>
+</div></section>
+
+<section id="measures"><div class="wrap">
+  <div class="head"><p class="eyebrow">Measures</p><h2>What good looks like for one account</h2></div>
+  <div class="grid3">
+    <div class="card"><span class="chip">30 days</span><p>{{M30}}</p></div>
+    <div class="card"><span class="chip">60 days</span><p>{{M60}}</p></div>
+    <div class="card"><span class="chip">90 days</span><p>{{M90}}</p></div>
+  </div>
+  <div class="card"><h3>Guardrails</h3><ul class="plain">
+    <li>CASL and CAN-SPAM on every email: sender name, mailing address, working unsubscribe. Opt-outs same day.</li>
+    <li>Calls dialed by hand. No calls to mobiles flagged Do Not Call.</li>
+    <li>One-to-one only. These contacts stay non-marketing unless the user says otherwise.</li>
+  </ul></div>
+</div></section>
+
+<section id="template"><div class="wrap">
+  <div class="head"><p class="eyebrow">Reuse</p><h2>The next account takes about an hour</h2><p>Same steps, same order. An AI assistant drafts research and first messages. The rep edits and sends.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Step</th><th>Who</th><th>Time</th><th>Output</th></tr></thead>
+    <tbody>
+      <tr><td>1. Why now and our angle</td><td>AI draft</td><td>15 min</td><td>Signals with sources, three use cases</td></tr>
+      <tr><td>2. Buying committee</td><td>AI + enrichment</td><td>10 min</td><td>8 to 11 people with roles and reach</td></tr>
+      <tr><td>3. HubSpot setup</td><td>Rep or RevOps</td><td>5 min</td><td>Target Account, contacts, buying roles</td></tr>
+      <tr><td>4. Bridges</td><td>Rep in Sales Navigator</td><td>10 min</td><td>Best bridge and intro request sent</td></tr>
+      <tr><td>5. Messages</td><td>AI drafts, rep edits</td><td>20 min</td><td>Email, LinkedIn note, call opener per person</td></tr>
+      <tr><td>6. Six-week plan</td><td>Rep</td><td>5 min</td><td>Touches on the calendar</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<footer><div class="wrap">{{FOOTER}}</div></footer>
+
+<script>
+/* Fill P with {k,n,t,m:[[label,body],...]} per person. Email bodies should omit the signature; it is appended at render time. */
+const P = {{PEOPLE_JSON}};
+const picker = document.getElementById('picker'), box = document.getElementById('msgs');
+const SIG = '\n\n--\n' + document.getElementById('sig').textContent;
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function show(k){
+  const p = P.find(x=>x.k===k);
+  picker.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.k===k ? 'true':'false'));
+  box.innerHTML = p.m.map((m,i)=>{
+    const body = m[0].startsWith('Email') && !/^No |^Direct |^Approach/.test(m[1]) ? m[1]+SIG : m[1];
+    return '<div class="msg"><div class="bar"><h3>'+esc(m[0])+'</h3><button class="copy" type="button" data-copy="m'+i+'">Copy</button></div><pre id="m'+i+'">'+esc(body)+'</pre></div>';
+  }).join('');
+}
+P.forEach(p=>{const b=document.createElement('button');b.type='button';b.dataset.k=p.k;b.textContent=p.n+' · '+p.t;b.addEventListener('click',()=>show(p.k));picker.appendChild(b);});
+if(P[0]) show(P[0].k);
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.copy'); if(!b) return;
+  const el = document.getElementById(b.dataset.copy); const t = el.textContent;
+  const done = ()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500);};
+  try{ navigator.clipboard.writeText(t).then(done).catch(()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}); }
+  catch(_){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}
+});
+</script>
+</body>
+</html>
