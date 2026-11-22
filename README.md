@@ -1,15 +1,15 @@
 # ABM account intel
 
-I built this to show how I run account-based plays for HubSpot sales teams.
+I built this to show how I run account-based plays for sales teams in their CRM (HubSpot, Salesforce, Pipedrive, Attio, and others).
 
-Spray-and-pray volume is easy. What hiring managers and revenue teams actually want is one account worked properly: why now, who decides, who can introduce you, what to say to each person, and how you track it in HubSpot without burning the brand.
+Spray-and-pray volume is easy. What hiring managers and revenue teams actually want is one account worked properly: why now, who decides, who can introduce you, what to say to each person, and how you track it in your CRM without burning the brand.
 
 This repo has two parts:
 
 1. A **portfolio demo** (`demo/index.html`) of a full account play
 2. A **reusable skill** (`skill/`) you can drop into Claude Code or a Claude Project to generate the next play
 
-Positioning: I build AI systems that make HubSpot sales teams faster.
+Positioning: I build AI systems that make sales teams faster in their CRM.
 
 ## Fictional demo
 
@@ -22,6 +22,8 @@ Positioning: I build AI systems that make HubSpot sales teams faster.
 | Sending rep | Alex Rivera |
 
 Every source on the demo page is labeled fictional. Do not treat any number or outcome there as a case study.
+
+The Campflannel example uses HubSpot as the target's CRM. The method is the same for Salesforce, Pipedrive, Attio, or any other CRM.
 
 Open the demo:
 
@@ -51,7 +53,7 @@ claude
 3. In the Project instructions, say: follow `SKILL.md` for any account play request
 4. Prompt with the target account, offer, seller, and rep name
 
-The skill asks for public-web research, an enrichment tool of your choice, HubSpot (or your CRM), and a Sales Navigator pass by the rep for warm bridges. It does not invent mutual connections or client results.
+The skill asks for public-web research, an enrichment tool of your choice, your CRM (HubSpot, Salesforce, Pipedrive, Attio, or equivalent), and a Sales Navigator pass by the rep for warm bridges. It does not invent mutual connections or client results.
 
 ## Repo layout
 

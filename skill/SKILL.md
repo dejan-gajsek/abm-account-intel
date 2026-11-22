@@ -1,6 +1,6 @@
 ---
 name: abm-account-intel
-description: Turn a target account name and seller offer into a full ABM account play. Use when the user asks for account-based research, a buying committee map, warm-intro bridges, per-person outreach, a six-week touch plan, or a HubSpot signals-to-action table for one named account.
+description: Turn a target account name and seller offer into a full ABM account play. Use when the user asks for account-based research, a buying committee map, warm-intro bridges, per-person outreach, a 2 to 3 week touch plan, or a CRM signals-to-action table for one named account.
 ---
 
 # ABM account intel
@@ -29,7 +29,7 @@ Use only what you can open or what the user pastes:
 
 - Public web: company site, news, careers, leadership pages, filings, conference talks
 - Enrichment tool of the user's choice (Apollo or equivalent) for titles, emails, phones
-- CRM (HubSpot or equivalent) for existing contacts, engagement, Target Account flags
+- Your CRM (HubSpot, Salesforce, Pipedrive, Attio, or equivalent) for existing contacts, engagement, and target-account flags
 - Sales Navigator (run by the rep): TeamLink and mutual connections for warm bridges
 
 Do not pretend you opened LinkedIn profiles from here if you did not. Do not invent mutual connections.
@@ -102,9 +102,16 @@ Rules for every message:
 - Hold CEO outreach until someone on the committee engages
 - Bring the gatekeeper in through an internal champion once a pilot is real
 
-### 6. Six-week staggered plan
+### 6. Two- to three-week staggered plan
 
-Build a week 0 to week 6 table: who, channel, what. Stagger so two people at the same company do not get the same message on the same day. Pause anyone who replies and handle by hand.
+Build a week 0 to week 3 table: who, channel, what. Keep the key touches and tighten the cadence; do not drop the follow-up, the CEO note (once someone engages), the last exit note, or the account review. Stagger so two people at the same company do not get the same message on the same day. Pause anyone who replies and handle by hand.
+
+Typical shape:
+
+- Week 0: prep. Check bridges, send intro requests, set CRM alerts.
+- Week 1: first outreach to the Mobilizer and closest alternatives (LinkedIn, then email, then a call to the lead).
+- Week 2: first outreach to the rest of the committee (except the CEO and the gatekeeper), follow-ups to week 1 people, a workshop offer to anyone who replied, and a CEO note if someone has engaged.
+- Week 3: last short exit note to non-responders, and an internal account review.
 
 ### 7. Offer ladder
 
@@ -119,11 +126,11 @@ Four rungs only:
 
 Six likely objections with plain replies. Cover "we already have X," "we're already doing AI," "not a priority," "just send me something," security, and cost.
 
-### 9. HubSpot signals to action
+### 9. CRM signals to action
 
-Table of signal, meaning, and the next action. Include reply, multi-open, new contact, job change, public news, and no engagement after six weeks.
+Table of signal, meaning, and the next action. Include reply, multi-open, new contact, job change, public news, and no engagement after two to three weeks. Use generic CRM terms (account, contact, deal, field, list, alert). If you know the target's CRM, name it as the example system, not as a requirement.
 
-List what is already done in the CRM and what still needs setup (alerts, Target Account, buying roles, non-marketing contact treatment).
+List what is already done in the CRM and what still needs setup (alerts, target-account flag, buying roles, keep these contacts off marketing lists).
 
 ### 10. Measures and guardrails
 
